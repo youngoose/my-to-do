@@ -1,0 +1,22 @@
+
+<div class="main-card card shadow mb-4">
+  <div class="card-body p-5">
+    <div class="mb-4">
+      <h5 class="card-title">To Do</h5>
+      <p class="card-text">Add your tasks here</p>
+      <input type="text" [formControl]="todoControl" (keydown.enter)="addTask(todoControl.value)">
+    </div>
+
+    @for(todo of todos; track $index) {
+      <div class="single-todo" [ngClass]="{ 'completed': todo.completed }">
+        <div>
+          <input type="checkbox" class="checkbox" id="todo-{{ $index }}" [(ngModel)]="todo.completed">
+          <label for="todo-{{ $index }}">{{ todo.task }}</label>
+        </div>
+        <div class="text-right">
+          <button (click)="removeTask($index)" class="btn-danger">cancel</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>
